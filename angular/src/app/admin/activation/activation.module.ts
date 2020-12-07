@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [ActivationComponent, UpdateComponent],
@@ -44,6 +45,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
 export class ActivationModule { }

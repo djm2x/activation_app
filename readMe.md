@@ -1,5 +1,5 @@
 # App web 
-[lien]:(https://p0intage.herokuapp.com)
+[lien]:(https://activation_app.herokuapp.com)
 
 ## Le projet à éte developpé par les technologies suivantes : 
 [ASP.net Core 3.1 SDK] :(https://dotnet.microsoft.com/download)
@@ -10,7 +10,7 @@
 
 ### la commande pour récuperer le repository du git est : 
 ```
-get clone  https://github.com/djm2x/gestion-material.git
+get clone  https://github.com/djm2x/activation_app.git
 ```
 
 ### Pour installer les dependences éxécuter la commande suivante : 
