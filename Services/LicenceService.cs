@@ -57,9 +57,9 @@ namespace Services
 
             var claims = new Claim[]
             {
-                new Claim(ClaimTypes.Name, model.Nom),
-                new Claim(ClaimTypes.Surname, model.Prenom),
-                new Claim(ClaimTypes.Email, model.Email),
+                new Claim("nom", model.Nom),
+                new Claim("prenom", model.Prenom),
+                new Claim("email", model.Email),
                 new Claim("cpuId", model.CpuId),
                 new Claim("biosId", model.BiosId),
                 new Claim("baseId", model.BaseId),

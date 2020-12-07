@@ -69,7 +69,7 @@ namespace Controllers
                     cpuId = e.CpuId,
                     biosId = e.BiosId,
                     baseId = e.BaseId,
-
+                    Website = e.Website,
                 })
                 .ToListAsync()
                 ;
@@ -94,7 +94,7 @@ namespace Controllers
                         model.Prenom,
                         model.Email,
                         _licenceService.GenerateTokken(model),
-                        "action_url",
+                        model.Website,
                         DateTime.Now.Year,
                         lang
                     );
@@ -106,7 +106,7 @@ namespace Controllers
                 return BadRequest(ex.Message);
             }
 
-            return Ok(new{costumMessage = "Email envoyé avec succès", model});
+            return Ok(new{costumMessage = "Email envoyé avec succès"});
         }
     }
 }

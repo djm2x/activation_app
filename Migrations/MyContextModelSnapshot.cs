@@ -49,10 +49,14 @@ namespace apps.Migrations
                     b.Property<string>("Prenom")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Website")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
+                    b.HasIndex("Email");
+
+                    b.HasIndex("Website");
 
                     b.ToTable("Activations");
                 });
@@ -103,12 +107,12 @@ namespace apps.Migrations
                             Id = 1,
                             Email = "sa@angular.io",
                             ImageUrl = "",
-                            IsActive = false,
-                            Matricule = "1708",
-                            Nom = "Bourgeois",
+                            IsActive = true,
+                            Matricule = "1171",
+                            Nom = "Fleury",
                             Password = "123",
-                            Phone = "0740227557",
-                            Prenom = "Thibault",
+                            Phone = "+33 535050366",
+                            Prenom = "Andéol",
                             Profil = "sa"
                         },
                         new
@@ -116,12 +120,12 @@ namespace apps.Migrations
                             Id = 2,
                             Email = "admin@angular.io",
                             ImageUrl = "",
-                            IsActive = true,
-                            Matricule = "1717",
-                            Nom = "Thomas",
+                            IsActive = false,
+                            Matricule = "1637",
+                            Nom = "Maillard",
                             Password = "123",
-                            Phone = "+33 216778825",
-                            Prenom = "Aurore",
+                            Phone = "+33 337453162",
+                            Prenom = "Silvère",
                             Profil = "admin"
                         });
                 });

@@ -17,7 +17,8 @@ export class Activation {
   prenom = '';
   email = '';
   date = new Date();
-  nomProduit = 'Time Track';
+  nomProduit = '';
+  website = '';
   macId = '';
   cpuId = '';
   biosId = '';

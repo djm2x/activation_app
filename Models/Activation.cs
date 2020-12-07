@@ -7,6 +7,7 @@ namespace Models
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string Email { get; set; }
+        public string Website { get; set; }
         public DateTime Date { get; set; }
         public string NomProduit { get; set; }
         public string MacId { get; set; }

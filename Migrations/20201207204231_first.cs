@@ -16,6 +16,7 @@ namespace apps.Migrations
                     Nom = table.Column<string>(type: "TEXT", nullable: true),
                     Prenom = table.Column<string>(type: "TEXT", nullable: true),
                     Email = table.Column<string>(type: "TEXT", nullable: true),
+                    Website = table.Column<string>(type: "TEXT", nullable: true),
                     Date = table.Column<DateTime>(type: "TEXT", nullable: false),
                     NomProduit = table.Column<string>(type: "TEXT", nullable: true),
                     MacId = table.Column<string>(type: "TEXT", nullable: true),
@@ -52,18 +53,22 @@ namespace apps.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "ImageUrl", "IsActive", "Matricule", "Nom", "Password", "Phone", "Prenom", "Profil" },
-                values: new object[] { 1, "sa@angular.io", "", false, "1708", "Bourgeois", "123", "0740227557", "Thibault", "sa" });
+                values: new object[] { 1, "sa@angular.io", "", true, "1171", "Fleury", "123", "+33 535050366", "Andéol", "sa" });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "ImageUrl", "IsActive", "Matricule", "Nom", "Password", "Phone", "Prenom", "Profil" },
-                values: new object[] { 2, "admin@angular.io", "", true, "1717", "Thomas", "123", "+33 216778825", "Aurore", "admin" });
+                values: new object[] { 2, "admin@angular.io", "", false, "1637", "Maillard", "123", "+33 337453162", "Silvère", "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Activations_Email",
                 table: "Activations",
-                column: "Email",
-                unique: true);
+                column: "Email");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Activations_Website",
+                table: "Activations",
+                column: "Website");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",

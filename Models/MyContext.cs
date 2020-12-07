@@ -31,7 +31,8 @@ namespace Models
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.Property(e => e.Nom);
                 entity.Property(e => e.Prenom);
-                entity.HasIndex(e => e.Email).IsUnique();
+                entity.HasIndex(e => e.Email);
+                entity.HasIndex(e => e.Website);
                 entity.Property(e => e.Date);
                 entity.Property(e => e.NomProduit);
                 entity.Property(e => e.MacId);

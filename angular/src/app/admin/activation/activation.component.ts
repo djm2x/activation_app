@@ -28,7 +28,7 @@ export class ActivationComponent implements OnInit, OnDestroy {
   dataSource: Activation[] = [];
   selectedList: Activation[] = [];
 
-  displayedColumns = [/*'select',*/  'nom', 'prenom', 'email', 'date', 'nomProduit', 'macId', 'option'];
+  displayedColumns = [/*'select',*/  'nom', 'prenom', 'email', 'date', 'nomProduit', 'macId', 'website', 'option'];
 
   panelOpenState = false;
 

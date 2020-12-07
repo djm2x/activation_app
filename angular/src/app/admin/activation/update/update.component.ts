@@ -52,16 +52,17 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
   createForm() {
     this.myForm = this.fb.group({
-      id: [this.o.id, [Validators.required, ]],
-nom: [this.o.nom, [Validators.required, ]],
-prenom: [this.o.prenom, [Validators.required, ]],
-email: [this.o.email, [Validators.required, Validators.email]],
-date: [this.o.date, [Validators.required, ]],
-nomProduit: [this.o.nomProduit, [Validators.required, ]],
-macId: [this.o.macId, [Validators.required, ]],
-cpuId: [this.o.cpuId, [Validators.required, ]],
-biosId: [this.o.biosId, [Validators.required, ]],
-baseId: [this.o.baseId, [Validators.required, ]],
+      id: [this.o.id, [Validators.required,]],
+      nom: [this.o.nom, [Validators.required,]],
+      prenom: [this.o.prenom, [Validators.required,]],
+      email: [this.o.email, [Validators.required, Validators.email]],
+      date: [this.o.date, [Validators.required,]],
+      nomProduit: [this.o.nomProduit, [Validators.required,]],
+      website: [this.o.website, [Validators.required,]],
+      macId: [this.o.macId, [Validators.required,]],
+      cpuId: [this.o.cpuId, [Validators.required,]],
+      biosId: [this.o.biosId, [Validators.required,]],
+      baseId: [this.o.baseId, [Validators.required,]],
 
     });
   }
