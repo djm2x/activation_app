@@ -167,6 +167,12 @@ export class ActivationComponent implements OnInit, OnDestroy {
     });
   }
 
+  sendEmail(o: Activation) {
+    const sub = this.uow.activations.sendEmail(o).subscribe(r => {
+      console.log(r)
+    });
+  }
+
   detail(o: Activation) {
     this.openDialog(o, `Détail Activation`, true).subscribe((result: Activation) => {
       if (result) {

@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Models;
 using Newtonsoft.Json;
 
 namespace Services
@@ -20,10 +21,8 @@ namespace Services
     }
     public class LicenceService
     {
-        private static string fingerPrint = string.Empty;
         public LicenceService()
         {
-            GenerateTokken();
         }
 
         // Generating 16 digit product key  
@@ -51,60 +50,30 @@ namespace Services
         }
 
 
-        public string GenerateTokken(string firstName = "me", string lastName = "you", string email = "dj")
+        public string GenerateTokken(Activation model)
         {
-
-            // var secret = "somethingyouwantwhichissecurewillworkk";
-
             var tokenHandler = new JwtSecurityTokenHandler();
-            // var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-            // var key = Encoding.ASCII.GetBytes("this is the secret phrase");
-            // var key = Encoding.ASCII.GetBytes(secret);
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(macId()));
-            // var claims = new Claim[]
-            //     {
-            //             new Claim(ClaimTypes.Name, user.Id.ToString()),
-            //             new Claim(ClaimTypes.Email, user.Email),
-            //             new Claim(ClaimTypes.Role, role.Id.ToString())
-            //     };
 
             var claims = new Claim[]
             {
-                new Claim(ClaimTypes.Name, firstName),
-                new Claim(ClaimTypes.Surname, lastName),
-                new Claim(ClaimTypes.Email, email),
-                new Claim("cpuId", cpuId()),
-                new Claim("biosId", biosId()),
-                new Claim("baseId", baseId()),
+                new Claim(ClaimTypes.Name, model.Nom),
+                new Claim(ClaimTypes.Surname, model.Prenom),
+                new Claim(ClaimTypes.Email, model.Email),
+                new Claim("cpuId", model.CpuId),
+                new Claim("biosId", model.BiosId),
+                new Claim("baseId", model.BaseId),
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                // Expires = DateTime.UtcNow.AddDays(7),
+                Expires = DateTime.UtcNow.AddYears(5),
                 // Issuer = "http://mysite.com",
                 // Audience = "http://myaudience.com",
                 SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
             };
             var createToken = tokenHandler.CreateToken(tokenDescriptor);
-
-            var jwt = tokenHandler.WriteToken(createToken);
-
-            Console.WriteLine(jwt);
-            Console.WriteLine(jwt.Length);
-
-            // Console.WriteLine(JsonConvert.SerializeObject(key).Length);
-            // Console.WriteLine(macId());
-
-
-            // var r = ValidateToken(jwt);
-
-            // Console.WriteLine(Base64Encode(macId()));
-            // Console.WriteLine(Code(jwt));
-            // Console.WriteLine(Base64Encode(jwt));
-            // Console.WriteLine(Base64Decode(Base64Encode(jwt)));
-
-
 
             return tokenHandler.WriteToken(createToken);
         }

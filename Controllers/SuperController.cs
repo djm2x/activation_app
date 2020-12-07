@@ -90,7 +90,7 @@ namespace Controllers
 
 
         [HttpPost]
-        public virtual async Task<ActionResult<T>> Post(T model)
+        public virtual async Task<IActionResult> Post(T model)
         {
             _context.Set<T>().Add(model);
 
@@ -148,7 +148,7 @@ namespace Controllers
         }
 
         [HttpGet("{id}")]
-        public virtual async Task<ActionResult<T>> Get(int id)
+        public virtual async Task<IActionResult> Get(int id)
         {
             var model = await _context.Set<T>().FindAsync(id);
 
@@ -224,7 +224,7 @@ namespace Controllers
 
 
         [HttpPost]
-        public virtual async Task<ActionResult<T>> DeleteRange(List<int> models)
+        public virtual async Task<IActionResult> DeleteRange(List<int> models)
         {
             if (models.Count == 0)
             {

@@ -49,20 +49,22 @@ export class LoaderInterceptor implements HttpInterceptor {
           if (event instanceof HttpResponse) {
             this.removeRequest(req);
             observer.next(event);
-            this.snackBar.manageStatusCode(event.status);
-            // if (!event.url.includes('restePointage')) {
-            // }
+
+            // console.log(event);
+
+            if (event.body?.costumMessage) {
+              this.snackBar.notifyOk(200, event.body?.costumMessage);
+            } else {
+              this.snackBar.manageStatusCode(event.status);
+
+            }
           }
         },
         err => {
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401 || err.status === 403) {
-              // this.toast.toastError(err.status); // , err.statusText);
-              // this.snackBar.notifyAlert(`${err.status}: ${err.statusText}`);
-              console.log(err.status, err.statusText);
-              // this.session.doSignOut();
-              this.router.navigate(['/admin']);
-              // this.snackBar.manageStatusCode(err.status);
+              this.snackBar.manageStatusCode(err.status);
+              this.router.navigate(['/auth']);
             } else {
               // console.log(err);
               // this.toast.toastError(err.error);

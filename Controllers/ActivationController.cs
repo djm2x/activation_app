@@ -9,6 +9,8 @@ using Models;
 using Api.Providers;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
+using Services;
+using Microsoft.Extensions.Options;
 
 namespace Controllers
 {
@@ -16,8 +18,23 @@ namespace Controllers
     [ApiController]
     public class ActivationsController : SuperController<Activation>
     {
-        public ActivationsController(MyContext context) : base(context)
-        { }
+        private readonly HtmlService _htmlService;
+        private readonly EmailSettings _emailSettings;
+        private readonly EmailService _emailService;
+        private readonly LicenceService _licenceService;
+
+        public ActivationsController(MyContext context
+        , HtmlService htmlService
+        , IOptions<EmailSettings> emailSettings
+        , EmailService emailService
+        , LicenceService licenceService
+        ) : base(context)
+        { 
+            _emailService = emailService;
+            _htmlService = htmlService;
+            _emailSettings = emailSettings.Value;
+            _licenceService = licenceService;
+        }
 
         [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}/{nom}/{prenom}/{email}/{nomProduit}/{macId}/{cpuId}/{biosId}/{baseId}")]
         public async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir, string nom, string prenom, string email, string nomProduit, string macId, string cpuId, string biosId, string baseId)
@@ -58,6 +75,38 @@ namespace Controllers
                 ;
 
             return Ok(new { list = list, count = count });
+        }
+
+
+        
+
+        [HttpPost]
+        public virtual async Task<IActionResult> SendEmail(Activation model)
+        {
+            var lang = "fr";
+            try
+            {
+                string subject = $"Activation {model.NomProduit}";
+                string html = "";
+
+                html = await this._htmlService.GenerateHtmlLicence(
+                        model.Nom,
+                        model.Prenom,
+                        model.Email,
+                        _licenceService.GenerateTokken(model),
+                        "action_url",
+                        DateTime.Now.Year,
+                        lang
+                    );
+
+                await _emailService.SendEmailAsync(model.Email, subject, html);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok(new{costumMessage = "Email envoyé avec succès", model});
         }
     }
 }

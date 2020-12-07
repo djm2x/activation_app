@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{nom}} {{prenom}}</title>
+</head>
+
+<style>
+
+  @import url('https://fonts.googleapis.com/css?family=Montserrat');
+  body {
+    font-family: 'Montserrat';
+    --primary: #6e74af;
+    --accent: #ffe4e4;
+    --warn: #be5683;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+  }
+
+  header {
+    background-color: var(--primary);
+    /* color: white; */
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    /* color: white; */
+    height: 50px;
+    width: 100vw;
+    background-color: var(--primary);
+    
+  }
+
+  .flex-auto {
+    flex: auto;
+  }
+
+  .center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card {
+    box-shadow: 5px 5px 30px var(--primary);
+    padding: 50px;
+    background-color: var(--primary);
+    /* color: white; */
+  }
+</style>
+
+<body>
+  <header class="center">
+    <p style="padding: 0 10px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, velit qui? Amet voluptas distinctio doloribus quis
+      debitis, odit illum dolores.</p>
+  </header>
+  <main class="center flex-auto">
+    
+
+    <div class="card">
+      <p>Voice votre licence</p>
+      <p>Nom : <b>{{nom}}</b></p>
+      <p>Prenom : <b>{{prenom}}</b></p>
+      <p>Email : <b>{{email}}</b></p>
+      <p>Licence : <b>{{licence}}</b></p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p style="padding: 0 10px;">&copy; <span>{{year}}</span>&nbsp;<span id="appname">Activation app</span> </p>
+
+    <p style="padding: 0 10px;">{{support_email}}</p>
+  </footer>
+</body>
+
+</html>
