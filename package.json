@@ -12,7 +12,7 @@
     "build-prod": "----------------------",
     "f-p0": "cd angular && ng build --prod --output-path ../wwwroot/a --base-href=/a/ && cd .. && node ./copy.script.js",
     "f-p": "cd angular && ng build --prod",
-    "p": "dotnet publish -o ./deploy",
+    "p": "dotnet publish -r win-x64 -c Release --output ./deploy /p:PublishReadyToRun=true --no-self-contained",
     "github": "----------------------",
     "init": "git init && git remote add origin https://github.com/djm2x/activation_app.git",
     "push": "git add . && git commit -m \"commit\" && git push -u origin master",

@@ -42,8 +42,8 @@ namespace Api
 
             services.AddDbContext<MyContext>(options =>
             {
-                // options.UseSqlServer(Configuration.GetConnectionString("hicham"));
-                options.UseSqlite(Configuration.GetConnectionString("sqlite"));
+                options.UseSqlServer(Configuration.GetConnectionString("hicham"));
+                // options.UseSqlite(Configuration.GetConnectionString("sqlite"));
                 options.EnableSensitiveDataLogging();
             });
 
