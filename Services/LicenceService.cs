@@ -38,22 +38,22 @@ namespace Services
             return pKey;
         }
 
-        public Info GetInfo()
-        {
-            return new Info
-            {
-                macId = macId(),
-                cpuId = cpuId(),
-                biosId = biosId(),
-                baseId = baseId(),
-            };
-        }
+        // public Info GetInfo()
+        // {
+        //     return new Info
+        //     {
+        //         macId = macId(),
+        //         cpuId = cpuId(),
+        //         biosId = biosId(),
+        //         baseId = baseId(),
+        //     };
+        // }
 
 
         public string GenerateTokken(Activation model)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(macId()));
+            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(model.MacId));
 
             var claims = new Claim[]
             {
